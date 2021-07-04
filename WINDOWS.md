@@ -4,6 +4,39 @@ You will find below the instructions to set up you computer for [Le Wagon Data S
 
 Please **read them carefully and execute all commands in the following order**. If you get stuck, don't hesitate to ask a teacher for help :raising_hand:
 
+  1. [Zoom](#zoom)
+  2. [GitHub account](#github-account)
+  3. [Windows version](#windows-version)
+  4. [Virtualization](#virtualization)
+  5. [Windows Subsystem for Linux](#windows-subsystem-for-linux)
+  6. [Ubuntu](#ubuntu)
+  7. [Chrome - your browser](#chrome---your-browser)
+  8. [Visual Studio Code](#visual-studio-code)
+  9. [VS Code Extensions](#vs-code-extensions)
+  10. [Windows Terminal](#windows-terminal)
+  11. [Git](#git)
+  12. [zsh](#zsh)
+  13. [Oh-my-zsh](#oh-my-zsh)
+  14. [GitHub](#github)
+  15. [Linking your default browser to Ubuntu](#linking-your-default-browser-to-ubuntu)
+  16. [GitHub CLI](#github-cli-1)
+  17. [Google Cloud CLI](#google-cloud-cli)
+  18. [Dotfiles](#dotfiles)
+  19. [Disable SSH passphrase prompt](#disable-ssh-passphrase-prompt)
+  20. [Installing Python (with pyenv)](#installing-python-with-pyenv)
+  21. [Python Virtual Environment](#python-virtual-environment)
+  22. [Python packages](#python-packages)
+  23. [Configuring Jupyter Notebook to open in your browser](#configuring-jupyter-notebook-to-open-in-your-browser)
+  24. [jupyter notebook extensions](#jupyter-notebook-extensions)
+  25. [Windows settings](#windows-settings)
+  26. [Visual C++ Redistributable](#visual-c-redistributable)
+  27. [Docker](#docker-)
+  28. [Google Cloud Platform setup](#google-cloud-platform-setup)
+  29. [Kitt](#kitt)
+  30. [Slack](#slack)
+  31. [(Bonus) Kata](#bonus-kata)
+
+
 Let's start :rocket:
 
 
