@@ -30,7 +30,7 @@ Please **read them carefully and execute all commands in the following order**. 
   24. [jupyter notebook extensions](#jupyter-notebook-extensions)
   25. [Windows settings](#windows-settings)
   26. [Visual C++ Redistributable](#visual-c-redistributable)
-  27. [Docker](#docker-)
+  27. [Docker](#install-docker)
   28. [Google Cloud Platform setup](#google-cloud-platform-setup)
   29. [Kitt](#kitt)
   30. [Slack](#slack)
