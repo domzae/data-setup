@@ -1,6 +1,14 @@
 #!/usr/bin/env ruby -wU
-
-PYTHON_VERSION = "3.8.6"
+CONSTANTS = {
+    'PYTHON_VERSION' => "3.8.12",
+    'TENSORFLOW_TOP_VERSION' => "tensorflow<2.6",
+    'APPLE_SILICON_TENSORFLOW_PACKAGES' => "tensorflow-macos tensorflow-metal",
+    'BOOTCAMP_COMPLETE_REQUIREMENTS' => "yapf jupyterlab seaborn plotly nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage jupyter_contrib_nbextensions",
+    'REQUIREMENTS_URL' => "https://raw.githubusercontent.com/lewagon/data-runner/py-3.8.12-pandas-1.3-async-v2/requirements.txt",
+    'PYTHON_CHECKER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh",
+    'PIP_CHECKER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.sh",
+    'PIP_LOADER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.py"
+}
 
 # NOTE(ssaunier): This script needs https://github.com/lewagon/setup to be cloned as well
 MAC_OS = %w[
@@ -21,6 +29,7 @@ MAC_OS = %w[
   osx_python
   virtualenv
   pip
+  python_checkup
   nbextensions
   docker
   gcp_cli_setup
@@ -31,6 +40,11 @@ MAC_OS = %w[
   setup/macos_slack
   setup/slack_settings
   kata
+].freeze
+
+MAC_OS_KC = %w[
+  keep_current
+  python_checkup
 ].freeze
 
 WINDOWS = %w[
@@ -58,11 +72,12 @@ WINDOWS = %w[
   ubuntu_python
   virtualenv
   pip
+  python_checkup
   win_jupyter
   nbextensions
   setup/windows_settings
   win_vs_redistributable
-  ubuntu_docker
+  win_docker
   gcp_setup
   gcp_setup_wsl
   gcp_setup_end
@@ -70,6 +85,11 @@ WINDOWS = %w[
   setup/windows_slack
   setup/slack_settings
   kata
+].freeze
+
+WINDOWS_KC = %w[
+  keep_current
+  python_checkup
 ].freeze
 
 LINUX = %w[
@@ -90,6 +110,7 @@ LINUX = %w[
   ubuntu_python
   virtualenv
   pip
+  python_checkup
   nbextensions
   ubuntu_docker
   gcp_setup
@@ -101,10 +122,20 @@ LINUX = %w[
   kata
 ]
 
+LINUX_KC = %w[
+  keep_current
+  python_checkup
+]
+
+KEEP_CURRENT_SUFFIX = "_keep_current"
+
 filenames = {
   "WINDOWS.md" => WINDOWS,
   "macOS.md" => MAC_OS,
   "LINUX.md" => LINUX,
+  "WINDOWS#{KEEP_CURRENT_SUFFIX}.md" => WINDOWS_KC,
+  "macOS#{KEEP_CURRENT_SUFFIX}.md" => MAC_OS_KC,
+  "LINUX#{KEEP_CURRENT_SUFFIX}.md" => LINUX_KC
 }
 
 DEFAULT_SUBS = {
@@ -115,13 +146,13 @@ DEFAULT_SUBS = {
 subs = {
   "WINDOWS.md" => DEFAULT_SUBS,
   "macOS.md" => DEFAULT_SUBS,
-  "LINUX.md" => DEFAULT_SUBS,
+  "LINUX.md" => DEFAULT_SUBS
 }
 
 delimiters = {
   "WINDOWS.md" => ["\\$WINDOWS_START\n", "\\$WINDOWS_END\n"],
   "macOS.md" => ["\\$MAC_START\n", "\\$MAC_END\n"],
-  "LINUX.md" => ["\\$LINUX_START\n", "\\$LINUX_END\n"],
+  "LINUX.md" => ["\\$LINUX_START\n", "\\$LINUX_END\n"]
 }
 
 filenames.each do |filename, partials|
@@ -139,22 +170,31 @@ filenames.each do |filename, partials|
         file = File.join("_partials", "#{partial}.md")
         content = File.read(file, encoding: "utf-8")
       end
+      # retrieve os name
+      if filename.include? KEEP_CURRENT_SUFFIX
+          os_name = filename[0..-(KEEP_CURRENT_SUFFIX.length() + 4)] + ".md"
+      else
+          os_name = filename
+      end
       # iterate through the patterns to replace in the file depending on the OS
-      subs[filename].each do |pattern, replace|
+      subs[os_name].each do |pattern, replace|
         content.gsub!(pattern, replace)
       end
       # remove the OS dependant blocks
-      removed_blocks = delimiters.keys - [filename]
+      removed_blocks = delimiters.keys - [os_name]
       removed_blocks.each do |block|
         delimiter_start, delimiter_end = delimiters[block]
         pattern = "#{delimiter_start}(.|\n)*?(?<!#{delimiter_end})#{delimiter_end}"
         content.gsub!(/#{pattern}/, "")
       end
       # remove the OS dependant block delimiters
-      delimiters[filename].each do |delimiter|
+      delimiters[os_name].each do |delimiter|
         content.gsub!(/#{delimiter}/, "")
       end
-      f << content.gsub("<PYTHON_VERSION>", PYTHON_VERSION)
+      CONSTANTS.each do |placeholder, value|
+        content.gsub!("<#{placeholder}>", value)
+      end
+      f << content
       f << "\n\n"
     end
   end

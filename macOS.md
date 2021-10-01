@@ -87,8 +87,6 @@ Press `CMD` + `I` on the Terminal Rosetta app, then check the box "Open using Ro
 
 ⚠️ From now on during the bootcamp, whenever you are asked to open a Terminal, you will use the **Terminal Rosetta** app.
 
-Launch the Terminal app. You will be prompted to install Rosetta. Click Install.
-
 </details>
 
 
@@ -171,8 +169,6 @@ brew upgrade jq          || brew install jq
 brew upgrade openssl     || brew install openssl
 brew upgrade tree        || brew install tree
 brew upgrade ncdu        || brew install ncdu
-brew upgrade htop        || brew install htop
-brew upgrade tig         || brew install tig
 brew upgrade xz          || brew install xz
 brew upgrade readline    || brew install readline
 ```
@@ -507,7 +503,7 @@ Then quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
 Let's install the [latest stable version of Python](https://www.python.org/doc/versions/) supported by Le Wagon's curriculum:
 
 ```bash
-pyenv install 3.8.6
+pyenv install 3.8.12
 ```
 
 This command might take a while, this is perfectly normal. Don't hesitate to help other students seated next to you!
@@ -532,7 +528,7 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include"
 Then try to install Python again:
 
 ```bash
-pyenv install <PYTHON VERSION>
+pyenv install 3.8.12
 ```
 
 It could raise another error about `bzip2`, you can ignore it and continue to the next step.
@@ -543,12 +539,12 @@ It could raise another error about `bzip2`, you can ignore it and continue to th
 OK once this command is complete, we are going to tell the system to use this version of Python **by default**. This is done with:
 
 ```bash
-pyenv global 3.8.6
+pyenv global 3.8.12
 ```
 
 Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
 
-To check if this worked, run `python --version`. If you see `3.8.6`, perfect! If not, ask a TA that will help you debug the problem thanks to `pyenv versions` and `type -a python` (`python` should be using the `.pyenv/shims` version first).
+To check if this worked, run `python --version`. If you see `3.8.12`, perfect! If not, ask a TA that will help you debug the problem thanks to `pyenv versions` and `type -a python` (`python` should be using the `.pyenv/shims` version first).
 
 
 ## Python Virtual Environment
@@ -566,7 +562,7 @@ Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart 
 Let's create the virtual environment we are going to use during the whole bootcamp:
 
 ```bash
-pyenv virtualenv 3.8.6 lewagon
+pyenv virtualenv 3.8.12 lewagon
 ```
 
 Let's now set the virtual environment with:
@@ -582,7 +578,7 @@ Great! Anytime we'll install Python package, we'll do it in that environment.
 
 Now that we have a pristine `lewagon` virtual environment, it's time to install some packages in it.
 
-First, let's upgrade `pip`, the tool to install Python Packages from [pypi.org](https://pypi.org). In the latest Ubuntu terminal where the virtualenv `lewagon` is activated, run:
+First, let's upgrade `pip`, the tool to install Python Packages from [pypi.org](https://pypi.org). In the latest terminal where the virtualenv `lewagon` is activated, run:
 
 ```bash
 pip install --upgrade pip
@@ -591,31 +587,66 @@ pip install --upgrade pip
 Then let's install some packages for the first weeks of the program:
 
 ```bash
-pip install pytest pylint ipdb pyyaml nbresult autopep8 flake8 lxml yapf
-```
-
-Let's install packages useful for API & Scraping:
-
-```bash
-pip install requests bs4
+pip install -Ur https://raw.githubusercontent.com/lewagon/data-runner/py-3.8.12-pandas-1.3-async-v2/requirements.txt
 ```
 
 Finally, more Data Science packages:
 
 ```bash
-pip install jupyterlab pandas matplotlib seaborn plotly scikit-learn tensorflow nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage
+pip install -U yapf jupyterlab seaborn plotly nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage jupyter_contrib_nbextensions
 ```
 
-### Packages check up
+### TensorFlow
+
+Install [TensorFlow](https://www.tensorflow.org/):
+
+<details>
+    <summary>Setup for Intel chips (default)</summary>
+
+```bash
+pip install -U 'tensorflow<2.6'
+```
+
+</details>
+
+<details>
+    <summary>Setup for Apple Silicon chips</summary>
+
+```bash
+pip install -U tensorflow-macos tensorflow-metal
+```
+
+</details>
+
+
+### Python setup check up
+
+Check your Python version with the following commands:
+```bash
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh)" 3.8.12
+```
 
 Run the following command to check if you successfully installed the required packages:
 ```bash
-curl https://gist.githubusercontent.com/krokrob/2e5a61b20582b55bbb034c4ea1e9f633/raw/bd80ab1e9c474dfdfc0ce2bf193e0b354723075f/pip_check.sh > pip_check.sh && zsh pip_check.sh && rm pip_check.sh
+zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.sh)"
 ```
 
 Now run the following command to check if you can load these packages:
 ```bash
-curl https://gist.githubusercontent.com/krokrob/90e35dee7ed2b20852b099331510b369/raw/09178c49db6e7537eed68335a25fbb00c7ca1fd4/pip_check.py > pip_check.py && python pip_check.py && rm pip_check.py
+python -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.py)"
+```
+
+Make sure you can run Jupyter:
+
+```bash
+jupyter notebook
+```
+
+And open a `Python 3` notebook.
+
+Make sure that you are running the correct python version in the notebook. Open a cell and run :
+``` python
+import sys; sys.version
 ```
 
 That's it for today. During the bootcamp, we'll install more packages but we'll talk about that later.
@@ -642,7 +673,8 @@ Improve the display of the [`details` disclosure elements](https://developer.moz
 
 Open `custom/custom.css` in the config directory:
 ```bash
-cd $JUPYTER_CONFIG_DIR
+cd $(jupyter --config-dir)
+mkdir -p custom
 touch custom/custom.css
 code custom/custom.css
 ```
@@ -717,10 +749,18 @@ You should get:
 ![](images/docker_info.png)
 
 
+
 ## `gcloud` CLI
+
 Before Setting up our Google Cloud Platform account let's configure the `gcloud` CLI (A command line interface for Google Cloud Platform). Run the below and follow the terminal prompts to update your $PATH and enable shell command completion for the `.zshrc` file:
+
 ```bash
 brew install --cask google-cloud-sdk
+```
+
+Then you can:
+
+```bash
 /usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/install.sh
 ```
 
@@ -742,6 +782,22 @@ brew install --cask google-cloud-sdk
 - Notice the `ID` automatically created for the project, e.g. `wagon-bootcamp-123456`
 
 ![](images/gcp_project.png)
+
+### Account language
+
+In order to facilitate the following of the instructions during the bootcamp, open your GCP account preferences:
+
+https://myaccount.google.com/language
+
+If the *preferred language* is not:
+- **English**
+- **United States**
+
+Then switch the language to english:
+- Click on the edit pen logo
+- Select **English**
+- Select **United States**
+- Click on **Select**
 
 ### Billing account
 
