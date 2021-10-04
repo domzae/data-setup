@@ -387,16 +387,45 @@ When the installation is finished, launch VS Code.
 
 ### Connecting VS Code to Ubuntu
 
-You should see a frame at the bottom-right corner of VS Code saying it detects WSL. Accept the installation of the WSL extension for VS Code.
+To make VS Code interact properly with Ubuntu, let's install the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) VS Code extension.
 
-:warning: This extension is mandatory for you to be able to work with VS Code!
+Copy-paste the following commands in your terminal:
+
+```bash
+code --install-extension ms-vscode-remote.remote-wsl
+```
+
+Then open VS Code from your terminal:
+
+```bash
+code .
+```
+
+:heavy_check_mark: If you see `WSL: Ubuntu` in a green box in the bottom left corner of the VS Code window, you're good to go :+1:
+
+![WSL Ubuntu Remote](https://github.com/lewagon/setup/blob/master/images/windows_remote_wsl.png)
+
+:x: Otherwise, please **contact a teacher**
 
 
 ## VS Code Extensions
 
 ### Installation
 
-Let's install some useful extensions to VS Code.
+Let's install some useful extensions to VS Code. 
+
+- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
+- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
+
+☝️ If you are on **Windows**, install them **manually** one-by-one from within VS code (Ctrl-Shift-X)
+
+If you are on **Mac** or **Linux**, you can install them by running the following command from your terminal: 
 
 ```bash
 code --install-extension ms-vscode.sublime-keybindings
@@ -408,14 +437,6 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-toolsai.jupyter
 ```
 
-Here is a list of the extensions you are installing:
-- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
-- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
 
 ### Live Share configuration
@@ -508,7 +529,7 @@ You can save these changes by pressing `CTRL` + `S`
 
 :heavy_check_mark: Your **Windows Terminal** is now setup :+1:
 
-This terminal has tabs: you can choose to open a new terminal tab by clicking on t**+** next to the current one.
+This terminal has tabs: you can choose to open a new terminal tab by clicking on the **+** next to the current one.
 
 **From now on, every time we will refer to the terminal or the console it will be this one.** DO NOT use the Ubuntu app anymore.
 
@@ -1554,6 +1575,8 @@ Once the teacher has approved your profile, go to your email inbox. You should h
 ### Installation
 
 [Download the Slack app](https://slack.com/downloads/windows) and install it.
+
+:warning: If you are already using Slack in your browser, please download and install **the desktop app** which is fully featured.
 
 
 ### Settings

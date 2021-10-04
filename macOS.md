@@ -212,7 +212,20 @@ code
 
 ### Installation
 
-Let's install some useful extensions to VS Code.
+Let's install some useful extensions to VS Code. 
+
+- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
+- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
+
+☝️ If you are on **Windows**, install them **manually** one-by-one from within VS code (Ctrl-Shift-X)
+
+If you are on **Mac** or **Linux**, you can install them by running the following command from your terminal: 
 
 ```bash
 code --install-extension ms-vscode.sublime-keybindings
@@ -224,14 +237,6 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-toolsai.jupyter
 ```
 
-Here is a list of the extensions you are installing:
-- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
-- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
 
 ### Live Share configuration
@@ -613,7 +618,7 @@ pip install -U 'tensorflow<2.6'
     <summary>Setup for Apple Silicon chips</summary>
 
 ```bash
-pip install -U tensorflow-macos tensorflow-metal
+pip install -U tensorflow-macos
 ```
 
 </details>
@@ -1024,6 +1029,8 @@ Once the teacher has approved your profile, go to your email inbox. You should h
 ### Installation
 
 [Download the Slack app](https://itunes.apple.com/fr/app/slack/id803453959?mt=12) and install it.
+
+:warning: If you are already using Slack in your browser, please download and install **the desktop app** which is fully featured.
 
 
 ### Settings

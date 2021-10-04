@@ -78,7 +78,20 @@ code
 
 ### Installation
 
-Let's install some useful extensions to VS Code.
+Let's install some useful extensions to VS Code. 
+
+- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
+- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
+
+☝️ If you are on **Windows**, install them **manually** one-by-one from within VS code (Ctrl-Shift-X)
+
+If you are on **Mac** or **Linux**, you can install them by running the following command from your terminal: 
 
 ```bash
 code --install-extension ms-vscode.sublime-keybindings
@@ -90,14 +103,6 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-toolsai.jupyter
 ```
 
-Here is a list of the extensions you are installing:
-- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
-- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
 
 ### Live Share configuration
@@ -415,6 +420,29 @@ you **need** to put one of the email listed above thanks to the previous `gh api
 don't do that, Kitt won't be able to track your progress.
 
 Please now **quit** all your opened terminal windows.
+
+
+## Disable SSH passphrase prompt
+
+You don't want to be asked for your passphrase every time you communicate with a distant repository. So, you need to add the plugin `ssh-agent` to `oh my zsh`:
+
+First, open the `.zshrc` file:
+
+```bash
+code ~/.zshrc
+```
+
+Then:
+- Spot the line starting with `plugins=`
+- Add `ssh-agent` at the end of the plugins list
+
+The list should look like:
+
+```bash
+plugins=(gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent)
+```
+
+:heavy_check_mark: Save the `.zshrc` file with `CTRL` + `S` and close your text editor.
 
 
 ## Installing Python (with [`pyenv`](https://github.com/pyenv/pyenv))
@@ -907,9 +935,13 @@ Once the teacher has approved your profile, go to your email inbox. You should h
 
 ## Slack
 
+[Slack](https://slack.com/) is a communcation platform pretty popular in the tech industry.
+
 ### Installation
 
 [Download the Slack app](https://get.slack.help/hc/en-us/articles/212924728-Slack-for-Linux-beta-) and install it.
+
+:warning: If you are already using Slack in your browser, please download and install **the desktop app** which is fully featured.
 
 
 ### Settings
