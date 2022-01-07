@@ -13,12 +13,17 @@ To be able to interact when we are not in the same physical room, we will be usi
 
 :warning: If you already have Zoom installed, please make sure that the version is at least **5.6**.
 
-- Go to [https://zoom.us/download](https://zoom.us/download)
-- Under **Zoom Client** click the **Download** button
-- Open the file you have just downloaded to install the app
-- Open the Zoom app
-- If you already have a Zoom account, sign in using your credentials
-- If not, click on the **Sign Up Free** link:
+Go to [zoom.us/download](https://zoom.us/download).
+
+Under **Zoom Client** click the **Download** button.
+
+Open the file you have just downloaded to install the app.
+
+Open the Zoom app.
+
+If you already have a Zoom account, sign in using your credentials.
+
+If not, click on the **Sign Up Free** link:
 
 ![Sign Up Free to Zoom](https://github.com/lewagon/setup/blob/master/images/zoom_sign_up_free.png)
 
@@ -37,7 +42,7 @@ You can now close the Zoom app.
 
 Have you signed up to GitHub? If not, [do it right away](https://github.com/join).
 
-:point_right: **[Upload a picture](https://github.com/settings/profile)** and put your name correctly on your GitHub account. This is important as we'll use an internal dashboard with your avatars. Please do this **now**, before you continue with this guide.
+:point_right: **[Upload a picture](https://github.com/settings/profile)** and put your name correctly on your GitHub account. This is important as we'll use an internal dashboard with your avatar. Please do this **now**, before you continue with this guide.
 
 ![GitHub picture](https://github.com/lewagon/setup/blob/master/images/github_picture.png)
 
@@ -48,13 +53,15 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 Let's install [Visual Studio Code](https://code.visualstudio.com) text editor.
 
-Copy (`CTRL` + `C`) the commands below then paste them in your terminal (`CTRL` + `SHIFT` + `v`):
+Copy (`Ctrl` + `C`) the commands below then paste them in your terminal (`Ctrl` + `Shift` + `v`):
 
 ```bash
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
+sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
 sudo apt update
-sudo apt install code
+sudo apt install -y code
 ```
 
 These commands will ask for your password: type it in.
@@ -78,20 +85,7 @@ code
 
 ### Installation
 
-Let's install some useful extensions to VS Code. 
-
-- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
-- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
-
-
-☝️ If you are on **Windows**, install them **manually** one-by-one from within VS code (Ctrl-Shift-X)
-
-If you are on **Mac** or **Linux**, you can install them by running the following command from your terminal: 
+Let's install some useful extensions to VS Code.
 
 ```bash
 code --install-extension ms-vscode.sublime-keybindings
@@ -103,6 +97,14 @@ code --install-extension ms-python.vscode-pylance
 code --install-extension ms-toolsai.jupyter
 ```
 
+Here is a list of the extensions you are installing:
+- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
+- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
 
 
 ### Live Share configuration
@@ -142,21 +144,16 @@ These commands will ask for your password: type it in.
 
 :warning: When you type your password, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your password as a whole but also its length. Just type in your password and when you're done, press `ENTER`.
 
-### GitHub CLI
+### GitHub CLI installation
 
 Let's now install [GitHub official CLI](https://cli.github.com) (Command Line Interface). It's a software used to interact with your GitHub account via the command line.
 
 In your terminal, copy-paste the following commands and type in your password if asked:
 
 ```bash
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
-```
-
-Then copy-paste the following command:
-
-```bash
 sudo apt install -y gh
 ```
 
@@ -189,7 +186,7 @@ Instead of using the default `bash` [shell](https://en.wikipedia.org/wiki/Shell_
 In a terminal execute the following command and type in your password if asked:
 
 ```bash
-sudo apt install -y zsh curl vim imagemagick jq
+sudo apt install -y zsh curl vim imagemagick jq unzip
 ```
 
 
@@ -214,77 +211,11 @@ At the end your terminal should look like this:
 :x: Otherwise, please **ask for a teacher**
 
 
-## GitHub
-
-### Already configured?
-
-Then try this command:
-
-```bash
-ssh -T git@github.com
-```
-
-If it returns the following:
-
-```bash
-# Hi <your_github_nickname>! You've successfully authenticated, but GitHub does not provide shell access
-```
-
-It means `git` is **already** configured on your laptop, you can skip the section below!
-
-### Configuring your first SSH key
-
-We need to generate SSH keys which are going to be used by GitHub and Heroku
-to authenticate you. Think of it as a way to log in, but different from the
-well known username/password couple. If you already generated keys
-that you already use with other services, you can skip this step.
-
-Open a terminal and type this, replacing the email with **yours** (the
-same one you used to create your GitHub account). It will prompt
-for information. Just press enter until it asks for a **passphrase**.
-
-```bash
-mkdir -p ~/.ssh && ssh-keygen -t ed25519 -o -a 100 -f ~/.ssh/id_ed25519 -C "TYPE_YOUR_EMAIL@HERE.com"
-```
-
-**NB:** when asked for a passphrase, put something you want (and that you'll remember),
-it's a password to protect your private key stored on your hard drive. You'll type,
-nothing will show up on the screen, **that's normal**. Just type the passphrase,
-and when you're done, press `Enter`.
-
-Then you need to give your **public** key to GitHub. Run:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-It will prompt on the screen the content of the `id_ed25519.pub` file. Copy that text,
-then go to [github.com/settings/ssh](https://github.com/settings/ssh). Click on
-**Add SSH key**, fill in the Title with your computer name, and paste the **Key**.
-Finish by clicking on the **Add key** green button.
-
-To check that this step is completed, in the terminal run this. You will be
-prompted a warning, type `yes` then `Enter`.
-
-```bash
-ssh -T git@github.com
-```
-
-If you see something like this, you're done!
-
-```bash
-# Hi <your_github_nickname>! You've successfully authenticated, but GitHub does not provide shell access
-```
-
-Don't be in a rush, take time to [read this StackOverflow Q&A](https://stackoverflow.com/questions/28479567/why-does-github-only-need-my-public-key-in-order-to-push) to get a better
-understanding of what those keys are used for.
-
-
 ## GitHub CLI
 
 CLI is the acronym of [Command-line Interface](https://en.wikipedia.org/wiki/Command-line_interface).
 
-In this section, we will install [GitHub CLI](https://cli.github.com/) to perform useful actions with GitHub data directly from the terminal.
+In this section, we will use [GitHub CLI](https://cli.github.com/) to interact with GitHub directly from the terminal.
 
 It should already be installed on your computer from the previous commands.
 
@@ -326,6 +257,47 @@ gh config set git_protocol ssh
 ```
 
 
+## SSH Key
+
+### Generation
+
+We need to generate SSH keys which are going to be used by GitHub to authenticate you. You can think of it as a way to log in, but different from the well known username/password pair.
+
+:warning: If you already generated keys that you already use with other services, you can skip this step.
+
+Open a terminal and copy-paste this command, replacing the email with **yours** (the same one you used to create your GitHub account).
+
+```bash
+mkdir -p ~/.ssh && ssh-keygen -t ed25519 -o -a 100 -f ~/.ssh/id_ed25519 -C "TYPE_YOUR_EMAIL@HERE.com"
+```
+
+It will prompt for information. Just press enter until it asks for a **passphrase**.
+
+:warning: When asked for a passphrase, put something you want and that you'll remember. It's a password to protect your private key stored on your hard drive.
+
+:warning: When you type your passphrase, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your passphrase as a whole but also its length. Just type your passphrase and when you're done, press `ENTER`.
+
+### Giving your public key to GitHub
+
+Now, you will give your **public** key to GitHub.
+
+In your terminal copy-paste the following command:
+
+```bash
+gh auth refresh -s write:public_key
+```
+
+It will prompt a one time code (####-####) on the screen. Copy it and press `ENTER`, then paste the code in your browser and follow the instructions to **Authorize GitHub**.
+
+Back in the terminal, press `ENTER` and run this:
+
+```bash
+gh ssh-key add ~/.ssh/id_ed25519.pub
+```
+
+This should return `✓ Public key added to your account`. If not, do not hesitate to **contact a teacher**.
+
+
 ## Google Cloud CLI
 
 Install the `gcloud` CLI to communicate with [Google Cloud Platform](https://cloud.google.com/) through your terminal:
@@ -341,9 +313,12 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 
 ## Dotfiles
 
-There are three options, choose _one_:
+There are three options, choose **one**:
 
-### 1. I already attended Web Development (FullStack) bootcamp at Le Wagon _on the same laptop_
+<details>
+    <summary>
+        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>on the same laptop</em></strong>
+    </summary>
 
 This means that you already forked the GitHub repo `lewagon/dotfiles`, but at that time the configuration was maybe not ready for the new Data Science bootcamp.
 
@@ -366,7 +341,15 @@ git commit -m "Update zshrc for Data Science bootcamp"
 git push origin master
 ```
 
-### 2. I did not attend the Web Dev bootcamp at Le Wagon
+</details>
+
+OR
+
+
+<details>
+    <summary>
+        <strong>I did not attend the Web Dev bootcamp at Le Wagon</strong>
+    </summary>
 
 Hackers love to refine and polish their shell and tools. We'll start with a great default configuration provided by [Le Wagon](http://github.com/lewagon/dotfiles), stored on GitHub. As your configuration is personal, you need your own repository storing it, so you first need to fork it to your GitHub account.
 
@@ -375,9 +358,6 @@ Hackers love to refine and polish their shell and tools. We'll start with a grea
 Forking means that it will create a new repo in your GitHub account, identical to the original one. You'll have a new repository on your GitHub account, `your_github_username/dotfiles`. We need to fork because each of you will need to put specific information (e.g. your name) in those
 files.
 
-Now this is done, go on with the following instructions under in the `3. ` section right below. :warning: DO NOT SKIP IT!
-
-### 3. I already attended Web Development (FullStack) bootcamp at Le Wagon _but I have a new laptop_
 
 Open your terminal and run the following command:
 
@@ -420,6 +400,59 @@ you **need** to put one of the email listed above thanks to the previous `gh api
 don't do that, Kitt won't be able to track your progress.
 
 Please now **quit** all your opened terminal windows.
+</details>
+
+
+OR
+
+<details>
+    <summary>
+        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>but I have a new laptop</em></strong>
+    </summary>
+
+
+Open your terminal and run the following command:
+
+```bash
+export GITHUB_USERNAME=`gh api user | jq -r '.login'`
+echo $GITHUB_USERNAME
+```
+
+You should see your GitHub username printed. If it's not the case, **stop here** and ask for help.
+There seems to be a problem with the previous step (`gh auth`).
+
+Time to fork the repo and clone it on your laptop:
+
+```bash
+mkdir -p ~/code/$GITHUB_USERNAME && cd $_
+gh repo fork lewagon/dotfiles --clone
+```
+
+Run the `dotfiles` installer.
+
+```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles && zsh install.sh
+```
+
+Check the emails registered with your GitHub Account. You'll need to pick one
+at the next step:
+
+```bash
+gh api user/emails | jq -r '.[].email'
+```
+
+Run the git installer:
+
+```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
+```
+
+:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email. Be careful
+you **need** to put one of the email listed above thanks to the previous `gh api ...` command. If you
+don't do that, Kitt won't be able to track your progress.
+
+Please now **quit** all your opened terminal windows.
+</details>
 
 
 ## Disable SSH passphrase prompt
@@ -442,7 +475,7 @@ The list should look like:
 plugins=(gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent)
 ```
 
-:heavy_check_mark: Save the `.zshrc` file with `CTRL` + `S` and close your text editor.
+:heavy_check_mark: Save the `.zshrc` file with `Ctrl` + `S` and close your text editor.
 
 
 ## Installing Python (with [`pyenv`](https://github.com/pyenv/pyenv))
@@ -453,16 +486,18 @@ First let's install `pyenv` with the following Terminal command:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+exec zsh
 ```
 
-Then quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one. Ignore the `pyenv: no such command 'virtualenv-init' for now`.
+Ignore the `pyenv: no such command 'virtualenv-init' for now`.
 
 Let's install some [dependencies](https://github.com/pyenv/pyenv/wiki/common-build-problems#prerequisites) needed to build Python from `pyenv`:
 
 ```bash
-sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-  libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+python-dev python3-dev
 ```
 
 Let's install the [latest stable version of Python](https://www.python.org/doc/versions/) supported by Le Wagon's curriculum:
@@ -477,9 +512,8 @@ OK once this command is complete, we are going to tell the system to use this ve
 
 ```bash
 pyenv global 3.8.12
+exec zsh
 ```
-
-Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
 
 To check if this worked, run `python --version`. If you see `3.8.12`, perfect! If not, ask a TA that will help you debug the problem thanks to `pyenv versions` and `type -a python` (`python` should be using the `.pyenv/shims` version first).
 
@@ -494,11 +528,10 @@ First let's install this plugin:
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 ```
 
-Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
-
 Let's create the virtual environment we are going to use during the whole bootcamp:
 
 ```bash
+exec zsh
 pyenv virtualenv 3.8.12 lewagon
 ```
 
@@ -523,22 +556,8 @@ pip install --upgrade pip
 
 Then let's install some packages for the first weeks of the program:
 
-```bash
-pip install -Ur https://raw.githubusercontent.com/lewagon/data-runner/py-3.8.12-pandas-1.3-async-v2/requirements.txt
-```
-
-Finally, more Data Science packages:
-
-```bash
-pip install -U yapf jupyterlab seaborn plotly nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage jupyter_contrib_nbextensions
-```
-
-### TensorFlow
-
-Install [TensorFlow](https://www.tensorflow.org/):
-
-```bash
-pip install -U 'tensorflow<2.6'
+``` bash
+pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
 
 
@@ -581,8 +600,6 @@ Pimp your `jupyter` notebooks with awesome extensions:
 
 ```bash
 # install nbextensions
-pip install jupyter_contrib_nbextensions
-pip install jupyter_nbextensions_configurator
 jupyter contrib nbextension install --user
 jupyter nbextension enable toc2/main
 jupyter nbextension enable collapsible_headings/main
@@ -616,10 +633,10 @@ summary::marker {
 You can close VS Code.
 
 ### `jupyter` check up
-Quit and restart your terminal first.
 
-Then, check you can launch a notebook server on your machine:
+Check you can launch a notebook server on your machine:
 ```bash
+exec zsh
 jupyter notebook
 ```
 Your web browser should open on a `jupyter` window:
@@ -640,11 +657,17 @@ Perform a sanity check for `jupyter notebooks nbextensions`. Click on `Nbextensi
 
 ![jupyter_nbextensions.png](images/jupyter_nbextensions.png)
 
-Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that the `nbextensions` are enabled:
+Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that _at least_ all `nbextensions` circled in red are enabled:
 
 ![nbextensions.png](images/nbextensions.png)
 
 You can close your web browser then terminate the jupyter server with `CTRL` + `C`.
+
+
+
+## DBeaver
+
+Download and install [DBeaver](https://dbeaver.io/), a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
 
 
 ## Docker 🐋
@@ -830,24 +853,46 @@ gcloud config list
 Now that you have created a `GCP account` and a `project` (identified by its `PROJECT_ID`), we are going to configure the actions (API calls) that you want to allow your code to perform.
 
 <details>
-  <summary>TL;DR</summary>
-  Since API calls are not free, it may be important to define these with caution, but for the purpose of the bootcamp this will not be an issue and we are going to allow our code to use all API without any restrictions (see the project owner part later).
+  <summary>🤔 Why do we need a service account key ?</summary>
 
-  As there may be several projects associated with a GCP account, a project may be composed of several services (any bundle of code, whatever its form factor, that requires the usage of GCP API calls in order to fulfill its purpose).
 
-  GCP requires that the services of the project using API calls are registered on the platform and their credentials configured.
+  You have created a `GCP account` linked to your credit card. Your account will be billed according to your usage of the ressources of the **Google Cloud Platform**. The billing will occur if you consume anything once the free trial is over, or if you exceed the amount of spending allowed during the free trial.
 
-  Here we will only need to use a single service and will create the corresponding `service account`.
+  In your `GCP account`, you have created a single `GCP project`, identified by its `PROJECT_ID`. The `GCP projects` allow you to organize and monitor more precisely how you consume the **GCP** ressources. For the purpose of the bootcamp, we are only going to create a single project.
 
-  Since the [service account](https://cloud.google.com/iam/docs/service-accounts) is what identifies your application (and therefore your GCP billing account and ultimately your credit card) when it comes to bill the performed API calls, you are going to want to be cautious with the next steps. Basically, do not let your service account json file by the coffee machine, do not send it as a tweet, do not store it in your git codebase (even if your git repository is private).
+  Now, we need a way to tell which ressources within a `GCP project` our code will be allowed to consume. Our code consumes GCP ressources through API calls.
+
+  Since API calls are not free, it is important to define with caution how our code will be allowed to use them. During the bootcamp this will not be an issue and we are going to allow our code to use all the API of **GCP** without any restrictions.
+
+  In the same way that there may be several projects associated with a GCP account, a project may be composed of several services (any bundle of code, whatever its form factor, that requires the usage of GCP API calls in order to fulfill its purpose).
+
+  GCP requires that the services of the projects using API calls are registered on the platform and their credentials configured through the access granted to a `service account`.
+
+  For the moment we will only need to use a single service and will create the corresponding `service account`.
 </details>
 
-- Go to [Service Account key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
-- Create a new Service Account key :
-  - Give a name to that account
-  - Set Role as `project > owner`
-- Download the `JSON` file
-- Give it a name **without** any spaces (something like `le-wagon-data-123456789abc.json`)
+Since the [service account](https://cloud.google.com/iam/docs/service-accounts) is what identifies your application (and therefore your GCP billing account and ultimately your credit card), you are going to want to be cautious with the next steps.
+
+⚠️ **Do not share you service account json file 🔑** ⚠️ Do not store it on your desktop, do not store it in your git codebase (even if your git repository is private), do not let it by the coffee machine, do not send it as a tweet.
+
+- Go to the [service accounts page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
+- Select your project in the list of recent projects if asked to
+- Create a service account:
+  - Click on **CREATE SERVICE ACCOUNT**:
+  - Give a `Service account name` to that account
+  - Click on **CREATE AND CONTINUE**
+  - Click on **Select a role** and choose `Quick access/Basic` then **Owner**, which gives full access to all ressources
+  - Click on **CONTINUE**
+  - Click on **DONE**
+- Download the service account json file 🔑:
+  - Click on the newly created service account
+  - Click on **KEYS**
+  - Click on **ADD KEY** then **Create new key**
+  - Select **JSON** and click on **CREATE**
+
+![](images/gcp_create_key.png)
+
+The browser has now saved the service account json file 🔑 in your downloads directory (it is named according to your service account name, something like `le-wagon-data-123456789abc.json`)
 
 
 - Store the service account json file somewhere you'll remember, for example:

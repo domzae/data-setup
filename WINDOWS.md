@@ -46,12 +46,17 @@ To be able to interact when we are not in the same physical room, we will be usi
 
 :warning: If you already have Zoom installed, please make sure that the version is at least **5.6**.
 
-- Go to [https://zoom.us/download](https://zoom.us/download)
-- Under **Zoom Client** click the **Download** button
-- Open the file you have just downloaded to install the app
-- Open the Zoom app
-- If you already have a Zoom account, sign in using your credentials
-- If not, click on the **Sign Up Free** link:
+Go to [zoom.us/download](https://zoom.us/download).
+
+Under **Zoom Client** click the **Download** button.
+
+Open the file you have just downloaded to install the app.
+
+Open the Zoom app.
+
+If you already have a Zoom account, sign in using your credentials.
+
+If not, click on the **Sign Up Free** link:
 
 ![Sign Up Free to Zoom](https://github.com/lewagon/setup/blob/master/images/zoom_sign_up_free.png)
 
@@ -70,7 +75,7 @@ You can now close the Zoom app.
 
 Have you signed up to GitHub? If not, [do it right away](https://github.com/join).
 
-:point_right: **[Upload a picture](https://github.com/settings/profile)** and put your name correctly on your GitHub account. This is important as we'll use an internal dashboard with your avatars. Please do this **now**, before you continue with this guide.
+:point_right: **[Upload a picture](https://github.com/settings/profile)** and put your name correctly on your GitHub account. This is important as we'll use an internal dashboard with your avatar. Please do this **now**, before you continue with this guide.
 
 ![GitHub picture](https://github.com/lewagon/setup/blob/master/images/github_picture.png)
 
@@ -79,37 +84,40 @@ Have you signed up to GitHub? If not, [do it right away](https://github.com/join
 
 Before we start, we need to check that the version of Windows installed on your computer is compatible with this setup instructions.
 
-### Windows 10
+### Windows 10 or Windows 11
 
-To be able to set up your computer, you need to have **Windows 10** installed.
+To be able to set up your computer, you need to have **Windows 10 or Windows 11** installed.
 
 To check your Windows version:
 - Press `Windows` + `R`
 - Type  `winver`
 - Press `Enter`
 
-:heavy_check_mark: If the first words of this window are **Windows 10** you're good to go :+1:
+:heavy_check_mark: If the first words of this window are **Windows 10 or Windows 11** you're good to go :+1:
 
-:x: If it does not mention **Windows 10**, you cannot proceed with this setup — but do not panic! You can always upgrade to Windows 10 :relieved:
+:x: If not, you cannot proceed with this setup. You have to upgrade to Windows 10 first :point_down:
 
 <details>
   <summary>Upgrade to Windows 10</summary>
 
   - Download Windows 10 from [Microsoft](https://www.microsoft.com/software-download/windows10ISO)
-  - Install it. It should take roughly an hour, but this is dependent on your computer
-  - When the installation is over, execute the commands above to check that you now have **Windows 10**
+  - Install it. It should take roughly an hour, but this depends on your computer.
+  - When the installation is over, execute the commands above :point_up: to check that you now have **Windows 10**.
 </details>
+
+:information_source: [Windows 11 upgrade is rolling now](https://www.microsoft.com/en-us/windows/get-windows-11), which means it may or may not be available for your computer just yet.
+
+:warning: **If you have Windows 10 installed, you don't need to upgrade to Windows 11 to proceed with this setup**.
 
 ### Latest updates
 
-Once you're sure that you're using Windows 10, you need to install all the latest updates.
+Once you're sure that you're using Windows 10 or 11, you need to install all the latest updates.
 
 Open Windows Update:
 - Press `Windows` + `R`
 - Type  `ms-settings:windowsupdate`
 - Press `Enter`
 - Click on `Check updates`
-
 
 :heavy_check_mark: If you a green check mark and the message "You're up to date", you're good to go :+1:
 
@@ -185,13 +193,42 @@ For many computers, this is already the case. Let's check:
 </details>
 
 
-## Windows Subsystem for Linux
-
-### Install WSL 1
+## Windows Subsystem for Linux (WSL)
 
 WSL is the development environment we are using to run Ubuntu. You can learn more about WSL [here](https://docs.microsoft.com/en-us/windows/wsl/faq).
 
-We will install WSL through the PowerShell Terminal:
+:information_source: The following instructions depend on your version of Windows. Please execute only the instructions corresponding to your version :point_down:
+
+### Windows 11
+
+If you are running Windows 11, we will install WSL 2 and Ubuntu in one command through the Windows Terminal.
+
+:warning: In the following instruction, please be aware of the `Ctrl` + `Shift` + `Enter` key stroke to execute **Windows Terminal** with administrator privileges instead of just clicking on `Ok`or pressing `Enter`.
+
+- Press `Windows` + `R`
+- Type  `wt`
+- Press **`Ctrl` + `Shift` + `Enter`**
+
+:warning: You may have to accept the UAC confirmation about the privilege elevation.
+
+A blue terminal window will appear:
+- Copy the following command (`Ctrl` + `C`)
+- Paste it into the terminal window (`Ctrl` + `V` or by right-clicking in the window)
+- Run it by pressing `Enter`
+
+```powershell
+wsl --install
+```
+
+:heavy_check_mark: If the command ran without any error, please restart your computer and continue below :+1:
+
+:x: If you encounter an error message (or if you see some text in red in the window), please **contact a teacher**
+
+### Windows 10
+
+#### Install WSL 1
+
+If you are running Windows 10, we will first install WSL 1 through the PowerShell Terminal.
 
 :warning: In the following instruction, please be aware of the `Ctrl` + `Shift` + `Enter` key stroke to execute **Windows PowerShell** with administrator privileges instead of just clicking on `Ok`or pressing `Enter`.
 
@@ -202,9 +239,8 @@ We will install WSL through the PowerShell Terminal:
 :warning: You may have to accept the UAC confirmation about the privilege elevation.
 
 A blue terminal window will appear:
-
-- Copy the following commands one by one (`CTRL` + `C`)
-- Paste them into the PowerShell window (`CTRL` + `V` or by right-clicking in the window)
+- Copy the following commands one by one (`Ctrl` + `C`)
+- Paste them into the PowerShell window (`Ctrl` + `V` or by right-clicking in the window)
 - Run them by pressing `Enter`
 
 ```powershell
@@ -223,7 +259,9 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 :x: If you encounter an error message (or if you see some text in red in the window), please **contact a teacher**
 
-### Upgrade to WSL 2
+#### Upgrade to WSL 2
+
+If you are running Windows 10, we will then upgrade WSL to version 2.
 
 Once your computer has restarted, we need to download the WSL2 installer.
 
@@ -239,7 +277,9 @@ Once your computer has restarted, we need to download the WSL2 installer.
 
 :x: If you encounter the error "This update only applies to machines with the Windows Subsystem for Linux", **right click** on the program and select `uninstall`; you shall be able to install it normally this time.
 
-### Make WSL 2 the default Windows Subsystem for Linux
+#### Make WSL 2 the default Windows Subsystem for Linux
+
+If you are running Windows 10, we will set WSL default version to 2.
 
 Now that WSL 2 is installed, let's make it the default version:
 - Press `Windows` + `R`
@@ -252,7 +292,7 @@ In the window which appears, type:
 wsl --set-default-version 2
 ```
 
-:heavy_check_mark: If you see "The operation completed successfully, you can close this terminal and continue below :+1:
+:heavy_check_mark: If you see "The operation completed successfully", you can close this terminal and continue below :+1:
 
 :x: If the message you get is about Virtualization, please **contact a teacher**
 
@@ -273,9 +313,19 @@ wsl --set-default-version 2
 
 ### Installation
 
+:information_source: The following instructions depend on your version of Windows. Please execute only the instructions corresponding to your version :point_down:
+
+#### Windows 11
+
+If you are running Windows 11, after restarting you computer, you should see a terminal window saying WSL is resuming the Ubuntu installation process. When it's done, Ubuntu will be launched.
+
+#### Windows 10
+
+If you are running Windows 10, let's install Ubuntu throught the Microsoft Store:
+
 - Click on `Start`
 - Type  `Microsoft Store`
-- Click on the Microsoft Windows Store in the list
+- Click on `Microsoft Store` in the list
 - Search for `Ubuntu` in the search bar
 - **Select version without any number, just plain "Ubuntu"**
 - Click on `Install`
@@ -286,7 +336,6 @@ wsl --set-default-version 2
   <summary>Uninstall wrong versions of Ubuntu</summary>
 
   To uninstall a wrong version of Ubuntu, you just have to go to the Installed Program List of Windows 10:
-
   - Press `Windows` + `R`
   - Type  `ms-settings:appsfeatures`
   - Press `Enter`
@@ -295,6 +344,8 @@ wsl --set-default-version 2
 </details>
 
 Once the installation is finished, the `Install` button becomes a `Launch` button: click on it.
+
+### First launch
 
 At first launch, you will be asked some information:
 - Choose a **username**:
@@ -408,64 +459,19 @@ code .
 :x: Otherwise, please **contact a teacher**
 
 
-## VS Code Extensions
-
-### Installation
-
-Let's install some useful extensions to VS Code. 
-
-- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
-- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
-- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
-- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
-- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
-- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
-- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
-
-
-☝️ If you are on **Windows**, install them **manually** one-by-one from within VS code (Ctrl-Shift-X)
-
-If you are on **Mac** or **Linux**, you can install them by running the following command from your terminal: 
-
-```bash
-code --install-extension ms-vscode.sublime-keybindings
-code --install-extension emmanuelbeziat.vscode-great-icons
-code --install-extension MS-vsliveshare.vsliveshare
-code --install-extension ms-python.python
-code --install-extension KevinRose.vsc-python-indent
-code --install-extension ms-python.vscode-pylance
-code --install-extension ms-toolsai.jupyter
-```
-
-
-
-### Live Share configuration
-
-[Visual Studio Live Share](https://visualstudio.microsoft.com/services/live-share/) is a VS Code extension which allows you to share the code in your text editor for debugging and pair-programming: let's set it up!
-
-Launch VS Code from your terminal by typing `code` and pressing `ENTER`.
-
-Click on the little arrow at the bottom of the left bar :point_down:
-
-![VS Code Live Share](https://github.com/lewagon/setup/blob/master/images/vscode_live_share.png)
-
-- Click on the "Share" button, then on "GitHub (Sign in using GitHub account)".
-- A popup appears asking you to sign in with GitHub: click on "Allow".
-- You are redirected to a GitHub page in you browser asking you to authorize Visual Studio Code: click on "Continue" then "Authorize github".
-- VS Code may display additional pop-ups: close them by clicking "OK".
-
-That's it, you're good to go!
-
-
 ## Windows Terminal
 
-The standard terminal installed by Ubuntu is a very crude: let's install **Windows Terminal**, a real modern terminal.
-
 ### Installation
+
+:information_source: The following instructions depend on your version of Windows.
+
+If you are running Windows 11, the Windows Terminal is already installed and you can proceed to the next section :point_down:
+
+If you are running Windows 10, let's install Windows Terminal, a real modern terminal:
 
 - Click on `Start`
 - Type  `Microsoft Store`
-- Click on the Microsoft Windows Store in the list
+- Click on `Microsoft Store` in the list
 - Search for `Windows Terminal` in the search bar
 - **Select Windows Terminal"**
 - Click on `Install`
@@ -506,11 +512,20 @@ We have circle in red the part you will change:
 
 First, let's ask Ubuntu to start directly inside your Ubuntu Home Directory instead of the Windows one:
 - Locate the `"name": "Ubuntu",`
-- Add the following line after it:
+- Add one of the following lines after it:
+
+For Windows 10 :point_down:
 
 ```bash
 "startingDirectory": "//wsl$/Ubuntu/home/the-username-you-chose-at-the-ubuntu-install",
 ```
+
+For Windows 11 :point_down:
+
+```bash
+"startingDirectory": "/home/the-username-you-chose-at-the-ubuntu-install",
+```
+
 :warning: Do not forget the comma at the end of the line!
 
 :warning: Do not forget to replace the username by your own in the line above!
@@ -525,13 +540,57 @@ Then, let's disable warning for copy-pasting commands between Windows and Ubuntu
 
 :warning: Do not forget the comma at the end of the line!
 
-You can save these changes by pressing `CTRL` + `S`
+You can save these changes by pressing `Ctrl` + `S`
 
 :heavy_check_mark: Your **Windows Terminal** is now setup :+1:
 
 This terminal has tabs: you can choose to open a new terminal tab by clicking on the **+** next to the current one.
 
-**From now on, every time we will refer to the terminal or the console it will be this one.** DO NOT use the Ubuntu app anymore.
+**From now on, every time we will refer to the terminal or the console it will be this one.** DO NOT use any other terminal anymore.
+
+
+## VS Code Extensions
+
+### Installation
+
+Let's install some useful extensions to VS Code.
+
+```bash
+code --install-extension ms-vscode.sublime-keybindings
+code --install-extension emmanuelbeziat.vscode-great-icons
+code --install-extension MS-vsliveshare.vsliveshare
+code --install-extension ms-python.python
+code --install-extension KevinRose.vsc-python-indent
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-toolsai.jupyter
+```
+
+Here is a list of the extensions you are installing:
+- [Sublime Text Keymap and Settings Importer](https://marketplace.visualstudio.com/items?itemName=ms-vscode.sublime-keybindings)
+- [VSCode Great Icons](https://marketplace.visualstudio.com/items?itemName=emmanuelbeziat.vscode-great-icons)
+- [Live Share](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare)
+- [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+- [Python Indent](https://marketplace.visualstudio.com/items?itemName=KevinRose.vsc-python-indent)
+- [Pylance](https://marketplace.visualstudio.com/items?itemName=ms-python.vscode-pylance)
+- [Jupyter](https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter)
+
+
+### Live Share configuration
+
+[Visual Studio Live Share](https://visualstudio.microsoft.com/services/live-share/) is a VS Code extension which allows you to share the code in your text editor for debugging and pair-programming: let's set it up!
+
+Launch VS Code from your terminal by typing `code` and pressing `ENTER`.
+
+Click on the little arrow at the bottom of the left bar :point_down:
+
+![VS Code Live Share](https://github.com/lewagon/setup/blob/master/images/vscode_live_share.png)
+
+- Click on the "Share" button, then on "GitHub (Sign in using GitHub account)".
+- A popup appears asking you to sign in with GitHub: click on "Allow".
+- You are redirected to a GitHub page in you browser asking you to authorize Visual Studio Code: click on "Continue" then "Authorize github".
+- VS Code may display additional pop-ups: close them by clicking "OK".
+
+That's it, you're good to go!
 
 
 ## Git
@@ -553,21 +612,16 @@ These commands will ask for your password: type it in.
 
 :warning: When you type your password, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your password as a whole but also its length. Just type in your password and when you're done, press `ENTER`.
 
-### GitHub CLI
+### GitHub CLI installation
 
 Let's now install [GitHub official CLI](https://cli.github.com) (Command Line Interface). It's a software used to interact with your GitHub account via the command line.
 
 In your terminal, copy-paste the following commands and type in your password if asked:
 
 ```bash
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 sudo apt update
-```
-
-Then copy-paste the following command:
-
-```bash
 sudo apt install -y gh
 ```
 
@@ -589,7 +643,7 @@ Instead of using the default `bash` [shell](https://en.wikipedia.org/wiki/Shell_
 In a terminal execute the following command and type in your password if asked:
 
 ```bash
-sudo apt install -y zsh curl vim imagemagick jq
+sudo apt install -y zsh curl vim imagemagick jq unzip
 ```
 
 
@@ -614,152 +668,11 @@ At the end your terminal should look like this:
 :x: Otherwise, please **ask for a teacher**
 
 
-## GitHub
-
-### Already configured?
-
-Then try this command:
-
-```bash
-ssh -T git@github.com
-```
-
-If it returns the following:
-
-```bash
-# Hi <your_github_nickname>! You've successfully authenticated, but GitHub does not provide shell access
-```
-
-It means `git` is **already** configured on your laptop, you can skip the section below!
-
-### Configuring your first SSH key
-
-We need to generate SSH keys which are going to be used by GitHub and Heroku
-to authenticate you. Think of it as a way to log in, but different from the
-well known username/password couple. If you already generated keys
-that you already use with other services, you can skip this step.
-
-Open a terminal and type this, replacing the email with **yours** (the
-same one you used to create your GitHub account). It will prompt
-for information. Just press enter until it asks for a **passphrase**.
-
-```bash
-mkdir -p ~/.ssh && ssh-keygen -t ed25519 -o -a 100 -f ~/.ssh/id_ed25519 -C "TYPE_YOUR_EMAIL@HERE.com"
-```
-
-**NB:** when asked for a passphrase, put something you want (and that you'll remember),
-it's a password to protect your private key stored on your hard drive. You'll type,
-nothing will show up on the screen, **that's normal**. Just type the passphrase,
-and when you're done, press `Enter`.
-
-Then you need to give your **public** key to GitHub. Run:
-
-```bash
-cat ~/.ssh/id_ed25519.pub
-```
-
-It will prompt on the screen the content of the `id_ed25519.pub` file. Copy that text,
-then go to [github.com/settings/ssh](https://github.com/settings/ssh). Click on
-**Add SSH key**, fill in the Title with your computer name, and paste the **Key**.
-Finish by clicking on the **Add key** green button.
-
-To check that this step is completed, in the terminal run this. You will be
-prompted a warning, type `yes` then `Enter`.
-
-```bash
-ssh -T git@github.com
-```
-
-If you see something like this, you're done!
-
-```bash
-# Hi <your_github_nickname>! You've successfully authenticated, but GitHub does not provide shell access
-```
-
-Don't be in a rush, take time to [read this StackOverflow Q&A](https://stackoverflow.com/questions/28479567/why-does-github-only-need-my-public-key-in-order-to-push) to get a better
-understanding of what those keys are used for.
-
-
-## Linking your default browser to Ubuntu
-
-To be sure that you can interact with your browser installed on Windows from your Ubuntu terminal, we need to set it as your default browser there.
-
-:warning: You need to execute at least one of the following commands below:
-
-<details>
-  <summary>Google Chrome as your default browser</summary>
-
-  Run the command:
-
-  ```bash
-    ls /mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe
-  ```
-
-  If you get an error like `ls: cannot access...` Run the following command:
-
-  ```bash
-    echo "export BROWSER='\"/mnt/c/Program Files/Google/Chrome/Application/chrome.exe\"'" >> ~/.zshrc
-  ```
-
-  Else run:
-
-  ```bash
-    echo "export BROWSER='\"/mnt/c/Program Files (x86)/Google/Chrome/Application/chrome.exe\"'" >> ~/.zshrc
-  ```
-</details>
-
-<details>
-  <summary>Mozilla Firefox as your default browser</summary>
-
-  Run the command:
-
-  ```bash
-    ls /mnt/c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
-  ```
-
-  If you get an error like `ls: cannot access...` Run the following command:
-
-  ```bash
-    echo "export BROWSER='\"/mnt/c/Program Files/Mozilla Firefox/firefox.exe\"'" >> ~/.zshrc
-  ```
-
-  Else run:
-
-  ```bash
-    echo "export BROWSER='\"/mnt/c/Program Files (x86)/Mozilla Firefox/firefox.exe\"'" >> ~/.zshrc
-  ```
-</details>
-
-<details>
-  <summary>Microsoft Edge as your default browser</summary>
-
-  Run the command:
-
-  ```bash
-  echo "export BROWSER='\"/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\"'" >> ~/.zshrc
-  ```
-</details>
-
-Restart your terminal.
-
-Then please make sure that the following command returns "Browser defined 👌":
-
-```bash
-[ -z "$BROWSER" ] && echo "ERROR: please define a BROWSER environment variable ⚠️" || echo "Browser defined 👌"
-```
-
-If it does not,
-
-:heavy_check_mark: If you got this message, you can continue :+1:
-
-:x: If not, choose a browser in the list above and execute the corresponding command. Then don't forget to close your terminal and open it again. Do not hesitate to **contact a teacher**.
-
-
 ## GitHub CLI
 
 CLI is the acronym of [Command-line Interface](https://en.wikipedia.org/wiki/Command-line_interface).
 
-In this section, we will install [GitHub CLI](https://cli.github.com/) to perform useful actions with GitHub data directly from the terminal.
+In this section, we will use [GitHub CLI](https://cli.github.com/) to interact with GitHub directly from the terminal.
 
 It should already be installed on your computer from the previous commands.
 
@@ -801,6 +714,47 @@ gh config set git_protocol ssh
 ```
 
 
+## SSH Key
+
+### Generation
+
+We need to generate SSH keys which are going to be used by GitHub to authenticate you. You can think of it as a way to log in, but different from the well known username/password pair.
+
+:warning: If you already generated keys that you already use with other services, you can skip this step.
+
+Open a terminal and copy-paste this command, replacing the email with **yours** (the same one you used to create your GitHub account).
+
+```bash
+mkdir -p ~/.ssh && ssh-keygen -t ed25519 -o -a 100 -f ~/.ssh/id_ed25519 -C "TYPE_YOUR_EMAIL@HERE.com"
+```
+
+It will prompt for information. Just press enter until it asks for a **passphrase**.
+
+:warning: When asked for a passphrase, put something you want and that you'll remember. It's a password to protect your private key stored on your hard drive.
+
+:warning: When you type your passphrase, nothing will show up on the screen, **that's normal**. This is a security feature to mask not only your passphrase as a whole but also its length. Just type your passphrase and when you're done, press `ENTER`.
+
+### Giving your public key to GitHub
+
+Now, you will give your **public** key to GitHub.
+
+In your terminal copy-paste the following command:
+
+```bash
+gh auth refresh -s write:public_key
+```
+
+It will prompt a one time code (####-####) on the screen. Copy it and press `ENTER`, then paste the code in your browser and follow the instructions to **Authorize GitHub**.
+
+Back in the terminal, press `ENTER` and run this:
+
+```bash
+gh ssh-key add ~/.ssh/id_ed25519.pub
+```
+
+This should return `✓ Public key added to your account`. If not, do not hesitate to **contact a teacher**.
+
+
 ## Google Cloud CLI
 
 Install the `gcloud` CLI to communicate with [Google Cloud Platform](https://cloud.google.com/) through your terminal:
@@ -816,9 +770,12 @@ sudo apt-get install google-cloud-sdk-app-engine-python
 
 ## Dotfiles
 
-There are three options, choose _one_:
+There are three options, choose **one**:
 
-### 1. I already attended Web Development (FullStack) bootcamp at Le Wagon _on the same laptop_
+<details>
+    <summary>
+        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>on the same laptop</em></strong>
+    </summary>
 
 This means that you already forked the GitHub repo `lewagon/dotfiles`, but at that time the configuration was maybe not ready for the new Data Science bootcamp.
 
@@ -841,7 +798,15 @@ git commit -m "Update zshrc for Data Science bootcamp"
 git push origin master
 ```
 
-### 2. I did not attend the Web Dev bootcamp at Le Wagon
+</details>
+
+OR
+
+
+<details>
+    <summary>
+        <strong>I did not attend the Web Dev bootcamp at Le Wagon</strong>
+    </summary>
 
 Hackers love to refine and polish their shell and tools. We'll start with a great default configuration provided by [Le Wagon](http://github.com/lewagon/dotfiles), stored on GitHub. As your configuration is personal, you need your own repository storing it, so you first need to fork it to your GitHub account.
 
@@ -850,9 +815,6 @@ Hackers love to refine and polish their shell and tools. We'll start with a grea
 Forking means that it will create a new repo in your GitHub account, identical to the original one. You'll have a new repository on your GitHub account, `your_github_username/dotfiles`. We need to fork because each of you will need to put specific information (e.g. your name) in those
 files.
 
-Now this is done, go on with the following instructions under in the `3. ` section right below. :warning: DO NOT SKIP IT!
-
-### 3. I already attended Web Development (FullStack) bootcamp at Le Wagon _but I have a new laptop_
 
 Open your terminal and run the following command:
 
@@ -895,6 +857,59 @@ you **need** to put one of the email listed above thanks to the previous `gh api
 don't do that, Kitt won't be able to track your progress.
 
 Please now **quit** all your opened terminal windows.
+</details>
+
+
+OR
+
+<details>
+    <summary>
+        <strong>I already attended Web Development (FullStack) bootcamp at Le Wagon <em>but I have a new laptop</em></strong>
+    </summary>
+
+
+Open your terminal and run the following command:
+
+```bash
+export GITHUB_USERNAME=`gh api user | jq -r '.login'`
+echo $GITHUB_USERNAME
+```
+
+You should see your GitHub username printed. If it's not the case, **stop here** and ask for help.
+There seems to be a problem with the previous step (`gh auth`).
+
+Time to fork the repo and clone it on your laptop:
+
+```bash
+mkdir -p ~/code/$GITHUB_USERNAME && cd $_
+gh repo fork lewagon/dotfiles --clone
+```
+
+Run the `dotfiles` installer.
+
+```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles && zsh install.sh
+```
+
+Check the emails registered with your GitHub Account. You'll need to pick one
+at the next step:
+
+```bash
+gh api user/emails | jq -r '.[].email'
+```
+
+Run the git installer:
+
+```bash
+cd ~/code/$GITHUB_USERNAME/dotfiles && zsh git_setup.sh
+```
+
+:point_up: This will **prompt** you for your name (`FirstName LastName`) and your email. Be careful
+you **need** to put one of the email listed above thanks to the previous `gh api ...` command. If you
+don't do that, Kitt won't be able to track your progress.
+
+Please now **quit** all your opened terminal windows.
+</details>
 
 
 ## Disable SSH passphrase prompt
@@ -917,7 +932,7 @@ The list should look like:
 plugins=(gitfast last-working-dir common-aliases zsh-syntax-highlighting history-substring-search pyenv ssh-agent)
 ```
 
-:heavy_check_mark: Save the `.zshrc` file with `CTRL` + `S` and close your text editor.
+:heavy_check_mark: Save the `.zshrc` file with `Ctrl` + `S` and close your text editor.
 
 
 ## Installing Python (with [`pyenv`](https://github.com/pyenv/pyenv))
@@ -928,16 +943,18 @@ First let's install `pyenv` with the following Terminal command:
 
 ```bash
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+exec zsh
 ```
 
-Then quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one. Ignore the `pyenv: no such command 'virtualenv-init' for now`.
+Ignore the `pyenv: no such command 'virtualenv-init' for now`.
 
 Let's install some [dependencies](https://github.com/pyenv/pyenv/wiki/common-build-problems#prerequisites) needed to build Python from `pyenv`:
 
 ```bash
-sudo apt install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
-  libreadline-dev libsqlite3-dev llvm libncurses5-dev libncursesw5-dev \
-  xz-utils tk-dev libffi-dev liblzma-dev python-openssl
+sudo apt-get update; sudo apt-get install make build-essential libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev \
+python-dev python3-dev
 ```
 
 Let's install the [latest stable version of Python](https://www.python.org/doc/versions/) supported by Le Wagon's curriculum:
@@ -952,9 +969,8 @@ OK once this command is complete, we are going to tell the system to use this ve
 
 ```bash
 pyenv global 3.8.12
+exec zsh
 ```
-
-Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
 
 To check if this worked, run `python --version`. If you see `3.8.12`, perfect! If not, ask a TA that will help you debug the problem thanks to `pyenv versions` and `type -a python` (`python` should be using the `.pyenv/shims` version first).
 
@@ -969,11 +985,10 @@ First let's install this plugin:
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 ```
 
-Once again, quit **all your opened terminal windows** (`Cmd` + `Q`) and restart one.
-
 Let's create the virtual environment we are going to use during the whole bootcamp:
 
 ```bash
+exec zsh
 pyenv virtualenv 3.8.12 lewagon
 ```
 
@@ -998,22 +1013,8 @@ pip install --upgrade pip
 
 Then let's install some packages for the first weeks of the program:
 
-```bash
-pip install -Ur https://raw.githubusercontent.com/lewagon/data-runner/py-3.8.12-pandas-1.3-async-v2/requirements.txt
-```
-
-Finally, more Data Science packages:
-
-```bash
-pip install -U yapf jupyterlab seaborn plotly nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage jupyter_contrib_nbextensions
-```
-
-### TensorFlow
-
-Install [TensorFlow](https://www.tensorflow.org/):
-
-```bash
-pip install -U 'tensorflow<2.6'
+``` bash
+pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
 
 
@@ -1100,8 +1101,6 @@ Pimp your `jupyter` notebooks with awesome extensions:
 
 ```bash
 # install nbextensions
-pip install jupyter_contrib_nbextensions
-pip install jupyter_nbextensions_configurator
 jupyter contrib nbextension install --user
 jupyter nbextension enable toc2/main
 jupyter nbextension enable collapsible_headings/main
@@ -1135,10 +1134,10 @@ summary::marker {
 You can close VS Code.
 
 ### `jupyter` check up
-Quit and restart your terminal first.
 
-Then, check you can launch a notebook server on your machine:
+Check you can launch a notebook server on your machine:
 ```bash
+exec zsh
 jupyter notebook
 ```
 Your web browser should open on a `jupyter` window:
@@ -1159,11 +1158,17 @@ Perform a sanity check for `jupyter notebooks nbextensions`. Click on `Nbextensi
 
 ![jupyter_nbextensions.png](images/jupyter_nbextensions.png)
 
-Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that the `nbextensions` are enabled:
+Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that _at least_ all `nbextensions` circled in red are enabled:
 
 ![nbextensions.png](images/nbextensions.png)
 
 You can close your web browser then terminate the jupyter server with `CTRL` + `C`.
+
+
+
+## DBeaver
+
+Download and install [DBeaver](https://dbeaver.io/), a free and open source powerful tool to connect to any database, explore the schema and even **run SQL queries**.
 
 
 ## Windows settings
@@ -1173,7 +1178,6 @@ You can close your web browser then terminate the jupyter server with `CTRL` + `
 We need an easy way to transfer files from Windows to Ubuntu and vice versa.
 
 In order to do that, let's create shortcuts to Ubuntu directories in the Windows **File Explorer**:
-
 - Open the Windows File Explorer (or use the shortcut `WIN` + `E`)
 - In the Address Bar, enter `\\wsl$\` (or `\\wsl$\Ubuntu` if it does not work)
 - You now have acces to the Ubuntu file system
@@ -1185,7 +1189,6 @@ In order to do that, let's create shortcuts to Ubuntu directories in the Windows
 ### Open the Windows File Explorer from the Ubuntu terminal
 
 Another option to move files around is to open the Windows **File Explorer** from the Ubuntu terminal:
-
 - Open an Ubuntu terminal
 - Go to the directory you wish to explore
 - Run the `explorer.exe .` command (alternatively, use `wslview .`)
@@ -1198,7 +1201,6 @@ Another option to move files around is to open the Windows **File Explorer** fro
 You might want to figure out the exact location of a Windows directory in the Ubuntu file system, or the other way around.
 
 In order to convert a Windows path to and from an Ubuntu path:
-
 - Open an Ubuntu terminal
 - Use the `wslpath "C:\Program Files"` command in order to translate a Windows path into an Ubuntu path
 - Use the `wslpath -w "/home"` command in order to translate an Ubuntu path into a Windows path
@@ -1409,24 +1411,46 @@ gcloud config list
 Now that you have created a `GCP account` and a `project` (identified by its `PROJECT_ID`), we are going to configure the actions (API calls) that you want to allow your code to perform.
 
 <details>
-  <summary>TL;DR</summary>
-  Since API calls are not free, it may be important to define these with caution, but for the purpose of the bootcamp this will not be an issue and we are going to allow our code to use all API without any restrictions (see the project owner part later).
+  <summary>🤔 Why do we need a service account key ?</summary>
 
-  As there may be several projects associated with a GCP account, a project may be composed of several services (any bundle of code, whatever its form factor, that requires the usage of GCP API calls in order to fulfill its purpose).
 
-  GCP requires that the services of the project using API calls are registered on the platform and their credentials configured.
+  You have created a `GCP account` linked to your credit card. Your account will be billed according to your usage of the ressources of the **Google Cloud Platform**. The billing will occur if you consume anything once the free trial is over, or if you exceed the amount of spending allowed during the free trial.
 
-  Here we will only need to use a single service and will create the corresponding `service account`.
+  In your `GCP account`, you have created a single `GCP project`, identified by its `PROJECT_ID`. The `GCP projects` allow you to organize and monitor more precisely how you consume the **GCP** ressources. For the purpose of the bootcamp, we are only going to create a single project.
 
-  Since the [service account](https://cloud.google.com/iam/docs/service-accounts) is what identifies your application (and therefore your GCP billing account and ultimately your credit card) when it comes to bill the performed API calls, you are going to want to be cautious with the next steps. Basically, do not let your service account json file by the coffee machine, do not send it as a tweet, do not store it in your git codebase (even if your git repository is private).
+  Now, we need a way to tell which ressources within a `GCP project` our code will be allowed to consume. Our code consumes GCP ressources through API calls.
+
+  Since API calls are not free, it is important to define with caution how our code will be allowed to use them. During the bootcamp this will not be an issue and we are going to allow our code to use all the API of **GCP** without any restrictions.
+
+  In the same way that there may be several projects associated with a GCP account, a project may be composed of several services (any bundle of code, whatever its form factor, that requires the usage of GCP API calls in order to fulfill its purpose).
+
+  GCP requires that the services of the projects using API calls are registered on the platform and their credentials configured through the access granted to a `service account`.
+
+  For the moment we will only need to use a single service and will create the corresponding `service account`.
 </details>
 
-- Go to [Service Account key page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
-- Create a new Service Account key :
-  - Give a name to that account
-  - Set Role as `project > owner`
-- Download the `JSON` file
-- Give it a name **without** any spaces (something like `le-wagon-data-123456789abc.json`)
+Since the [service account](https://cloud.google.com/iam/docs/service-accounts) is what identifies your application (and therefore your GCP billing account and ultimately your credit card), you are going to want to be cautious with the next steps.
+
+⚠️ **Do not share you service account json file 🔑** ⚠️ Do not store it on your desktop, do not store it in your git codebase (even if your git repository is private), do not let it by the coffee machine, do not send it as a tweet.
+
+- Go to the [service accounts page](https://console.cloud.google.com/apis/credentials/serviceaccountkey)
+- Select your project in the list of recent projects if asked to
+- Create a service account:
+  - Click on **CREATE SERVICE ACCOUNT**:
+  - Give a `Service account name` to that account
+  - Click on **CREATE AND CONTINUE**
+  - Click on **Select a role** and choose `Quick access/Basic` then **Owner**, which gives full access to all ressources
+  - Click on **CONTINUE**
+  - Click on **DONE**
+- Download the service account json file 🔑:
+  - Click on the newly created service account
+  - Click on **KEYS**
+  - Click on **ADD KEY** then **Create new key**
+  - Select **JSON** and click on **CREATE**
+
+![](images/gcp_create_key.png)
+
+The browser has now saved the service account json file 🔑 in your downloads directory (it is named according to your service account name, something like `le-wagon-data-123456789abc.json`)
 
 
 We will now move the service account json file from your Windows disk to the Ubuntu disk. This will allow the development tools in Ubuntu to access to the ressources of your GCP account.
@@ -1442,7 +1466,7 @@ cd ~/code/GITHUB_NICKNAME
 ls -la
 ```
 
-If the command does not show the `data-challenges` and `dotfiles` directories, ask for a TA 🙏
+If the command does not show the `dotfiles` directory, ask for a TA 🙏
 
 Otherwise, you can proceed with the setup:
 

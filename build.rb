@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby -wU
 CONSTANTS = {
     'PYTHON_VERSION' => "3.8.12",
-    'TENSORFLOW_TOP_VERSION' => "tensorflow<2.6",
-    'APPLE_SILICON_TENSORFLOW_PACKAGES' => "tensorflow-macos",
-    'BOOTCAMP_COMPLETE_REQUIREMENTS' => "yapf jupyterlab seaborn plotly nbconvert xgboost statsmodels pandas-profiling dtale jupyter-resource-usage jupyter_contrib_nbextensions",
-    'REQUIREMENTS_URL' => "https://raw.githubusercontent.com/lewagon/data-runner/py-3.8.12-pandas-1.3-async-v2/requirements.txt",
     'PYTHON_CHECKER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh",
     'PIP_CHECKER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.sh",
     'PIP_LOADER_URL' => "https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.py"
@@ -23,14 +19,19 @@ MAC_OS = %w[
   vscode_extensions
   setup/vscode_liveshare
   setup/oh_my_zsh
-  github_rsa
   setup/gh_cli
+  setup/ssh_key
   dotfiles
+  dotfiles_new_student
+  dotfiles_new_laptop
+  dotfiles_new_laptop_heading
+  dotfiles_new_laptop
   osx_python
   virtualenv
   pip
   python_checkup
   nbextensions
+  dbeaver
   docker
   gcp_cli_setup
   gcp_setup
@@ -57,17 +58,20 @@ WINDOWS = %w[
   setup/windows_ubuntu
   chrome
   setup/windows_vscode
+  setup/windows_terminal
   vscode_extensions
   setup/vscode_liveshare
-  setup/windows_terminal
   setup/git
   setup/zsh
   setup/oh_my_zsh
-  github_rsa
-  setup/windows_browser
   setup/gh_cli
+  setup/ssh_key
   ubuntu_gcloud
   dotfiles
+  dotfiles_new_student
+  dotfiles_new_laptop
+  dotfiles_new_laptop_heading
+  dotfiles_new_laptop
   setup/ssh_agent
   ubuntu_python
   virtualenv
@@ -75,6 +79,7 @@ WINDOWS = %w[
   python_checkup
   win_jupyter
   nbextensions
+  dbeaver
   setup/windows_settings
   win_vs_redistributable
   win_docker
@@ -103,16 +108,21 @@ LINUX = %w[
   chrome
   setup/zsh
   setup/oh_my_zsh
-  github_rsa
   setup/gh_cli
+  setup/ssh_key
   ubuntu_gcloud
   dotfiles
+  dotfiles_new_student
+  dotfiles_new_laptop
+  dotfiles_new_laptop_heading
+  dotfiles_new_laptop
   setup/ssh_agent
   ubuntu_python
   virtualenv
   pip
   python_checkup
   nbextensions
+  dbeaver
   ubuntu_docker
   gcp_setup
   gcp_setup_linux
@@ -173,9 +183,9 @@ filenames.each do |filename, partials|
       end
       # retrieve os name
       if filename.include? KEEP_CURRENT_SUFFIX
-          os_name = filename[0..-(KEEP_CURRENT_SUFFIX.length() + 4)] + ".md"
+        os_name = filename[0..-(KEEP_CURRENT_SUFFIX.length() + 4)] + ".md"
       else
-          os_name = filename
+        os_name = filename
       end
       # iterate through the patterns to replace in the file depending on the OS
       subs[os_name].each do |pattern, replace|

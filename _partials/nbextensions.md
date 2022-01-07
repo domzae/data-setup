@@ -4,8 +4,6 @@ Pimp your `jupyter` notebooks with awesome extensions:
 
 ```bash
 # install nbextensions
-pip install jupyter_contrib_nbextensions
-pip install jupyter_nbextensions_configurator
 jupyter contrib nbextension install --user
 jupyter nbextension enable toc2/main
 jupyter nbextension enable collapsible_headings/main
@@ -39,10 +37,10 @@ summary::marker {
 You can close <CODE_EDITOR>.
 
 ### `jupyter` check up
-Quit and restart your terminal first.
 
-Then, check you can launch a notebook server on your machine:
+Check you can launch a notebook server on your machine:
 ```bash
+exec zsh
 jupyter notebook
 ```
 Your web browser should open on a `jupyter` window:
@@ -63,7 +61,7 @@ Perform a sanity check for `jupyter notebooks nbextensions`. Click on `Nbextensi
 
 ![jupyter_nbextensions.png](images/jupyter_nbextensions.png)
 
-Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that the `nbextensions` are enabled:
+Untick _"disable configuration for nbextensions without explicit compatibility"_ then check that _at least_ all `nbextensions` circled in red are enabled:
 
 ![nbextensions.png](images/nbextensions.png)
 
