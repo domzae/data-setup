@@ -440,7 +440,9 @@ When the installation is finished, launch VS Code.
 
 To make VS Code interact properly with Ubuntu, let's install the [Remote - WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl) VS Code extension.
 
-Copy-paste the following commands in your terminal:
+Open your **Ubuntu terminal**.
+
+Copy-paste the following commands in the terminal:
 
 ```bash
 code --install-extension ms-vscode-remote.remote-wsl
@@ -512,23 +514,13 @@ We have circle in red the part you will change:
 
 First, let's ask Ubuntu to start directly inside your Ubuntu Home Directory instead of the Windows one:
 - Locate the `"name": "Ubuntu",`
-- Add one of the following lines after it:
-
-For Windows 10 :point_down:
+- Add the following line after it:
 
 ```bash
-"startingDirectory": "//wsl$/Ubuntu/home/the-username-you-chose-at-the-ubuntu-install",
-```
-
-For Windows 11 :point_down:
-
-```bash
-"startingDirectory": "/home/the-username-you-chose-at-the-ubuntu-install",
+"commandline": "wsl.exe ~",
 ```
 
 :warning: Do not forget the comma at the end of the line!
-
-:warning: Do not forget to replace the username by your own in the line above!
 
 Then, let's disable warning for copy-pasting commands between Windows and Ubuntu:
 - Locate the line `"defaultProfile": "{2c4de342-...}"`
@@ -983,12 +975,12 @@ First let's install this plugin:
 
 ```bash
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
+exec zsh
 ```
 
 Let's create the virtual environment we are going to use during the whole bootcamp:
 
 ```bash
-exec zsh
 pyenv virtualenv 3.8.12 lewagon
 ```
 
@@ -1135,11 +1127,18 @@ You can close VS Code.
 
 ### `jupyter` check up
 
-Check you can launch a notebook server on your machine:
+Let's reset your terminal:
+
 ```bash
 exec zsh
+```
+
+Now, check you can launch a notebook server on your machine:
+
+```bash
 jupyter notebook
 ```
+
 Your web browser should open on a `jupyter` window:
 
 ![jupyter.png](images/jupyter.png)
