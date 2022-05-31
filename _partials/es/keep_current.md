@@ -86,14 +86,26 @@ type -a pyenv > /dev/null && eval "$(pyenv init --path)"
 
 Actualiza pyenv:
 
+$MAC_START
+``` bash
+brew update && brew upgrade pyenv
+```
+$MAC_END
+$LINUX_START
 ``` bash
 cd $(pyenv root) && git pull
 ```
+$LINUX_END
+$WINDOWS_START
+``` bash
+cd $(pyenv root) && git pull
+```
+$WINDOWS_END
 
 Instala la versión actual de python:
 
 ```bash
-pyenv install 3.8.12
+pyenv install <PYTHON_VERSION>
 ```
 
 👉 Asegúrate de que el comando se ejecute completamente y luego **reinicia tu terminal**.
@@ -107,7 +119,7 @@ pyenv virtualenv-delete lewagon_current
 Crea un nuevo ambiente virtual:
 
 ```bash
-pyenv virtualenv 3.8.12 lewagon_current
+pyenv virtualenv <PYTHON_VERSION> lewagon_current
 ```
 
 Define el nuevo ambiente virtual como predeterminado:
@@ -126,8 +138,8 @@ pyenv versions
 
 ``` bash
   system
-  3.8.12
-  3.8.12/envs/lewagon_current
+  <PYTHON_VERSION>
+  <PYTHON_VERSION>/envs/lewagon_current
   3.7.6
   3.7.6/envs/lewagon
 * lewagon_current
@@ -140,9 +152,37 @@ pyenv versions
 pip install -U pip
 ```
 
+$MAC_START
+Si tu computadora usa **Apple Silicon**, expande el párrafo de abajo y léelo. Si no es el caso, ignóralo.
+
+<details>
+  <summary>👉&nbsp;&nbsp;Configuración para Apple Silicon 👈</summary>
+
+``` bash
+pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_silicon.txt
+```
+</details>
+
+Si tu computadora usa **Apple Intel**, expande el párrafo de abajo y léelo. Si no es el caso, ignóralo.
+
+<details>
+  <summary>👉&nbsp;&nbsp;Configuración para Apple Intel 👈</summary>
+
+``` bash
+pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/apple_intel.txt
+```
+</details>
+$MAC_END
+$WINDOWS_START
 ``` bash
 pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
 ```
+$WINDOWS_END
+$LINUX_START
+``` bash
+pip install -r https://raw.githubusercontent.com/lewagon/data-setup/master/specs/releases/linux.txt
+```
+$LINUX_END
 
 ## GCP
 
@@ -252,11 +292,23 @@ gcloud auth configure-docker
 
 ## Docker
 
+$MAC_START
+Start the Docker app
+$MAC_END
+$LINUX_START
 Start Docker :
 
 ``` bash
 sudo service docker start
 ```
+$LINUX_END
+$WINDOWS_START
+Start Docker :
+
+``` bash
+sudo service docker start
+```
+$WINDOWS_END
 
 Verifica que Docker pueda ejecutar la imagen de hello-world:
 
@@ -266,43 +318,28 @@ docker run hello-world
 
 👉 Asegúrate de que este comando se ejecute completamente
 
+$MAC_START
+Stop the Docker app
+$MAC_END
+$LINUX_START
+Start Docker :
+
+``` bash
+sudo service docker stop
+```
+$LINUX_END
+$WINDOWS_START
 Start Docker :
 
 ``` bash
 sudo service docker stop
 ```
 
+Si este comando no funciona, reinicia Ubuntu ejecutando el comando siguiente en una ventana PowerShell:
 
-### Chqueo de la configuración de Python
-
-Verifica tu versión de Python con los siguientes comandos:
-```bash
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/python_checker.sh)" 3.8.12
+``` bash
+wsl --shutdown
 ```
 
-Ejecuta el comando siguiente para verificar que hayas instalado los paquetes requeridos correctamente:
-```bash
-zsh -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.sh)"
-```
-
-Ahora ejecuta el siguiente comando para verificar que puedas cargar estos paquetes:
-```bash
-python -c "$(curl -fsSL https://raw.githubusercontent.com/lewagon/data-setup/master/checks/pip_check.py)"
-```
-
-Asegúrate de que puedas usar Jupyter:
-
-```bash
-jupyter notebook
-```
-
-Y abre un notebook `Python 3`.
-
-Asegúrate de que estés usando la versión correcta de python en el notebook. Abre una celda y ejecuta lo siguiente:
-``` python
-import sys; sys.version
-```
-
-¡Listo! Ya tienes un virtual env de python completo con todos los paquetes tercerizados que necesitarás en el bootcamp.
-
-
+Si después de eso el comando sigue sin funcionar, intenta reiniciar tu máquina Windows
+$WINDOWS_END

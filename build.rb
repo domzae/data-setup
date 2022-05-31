@@ -22,7 +22,6 @@ MAC_OS = %w[
   setup/vscode_liveshare
   setup/oh_my_zsh
   setup/gh_cli
-  setup/ssh_key
   dotfiles
   dotfiles_new_student
   dotfiles_new_laptop
@@ -63,11 +62,9 @@ WINDOWS = %w[
   setup/windows_terminal
   vscode_extensions
   setup/vscode_liveshare
-  setup/git
-  setup/zsh
+  setup/cli_tools
   setup/oh_my_zsh
   setup/gh_cli
-  setup/ssh_key
   ubuntu_gcloud
   dotfiles
   dotfiles_new_student
@@ -106,12 +103,10 @@ LINUX = %w[
   setup/ubuntu_vscode
   vscode_extensions
   setup/vscode_liveshare
-  setup/git
+  setup/cli_tools
   chrome
-  setup/zsh
   setup/oh_my_zsh
   setup/gh_cli
-  setup/ssh_key
   ubuntu_gcloud
   dotfiles
   dotfiles_new_student
@@ -140,8 +135,7 @@ LINUX_KC = %w[
   python_checkup
 ]
 
-# LOCALES = ["", "es"]  # TODO: add support for the es locale when the content is merged
-LOCALES = [""]  # english locale only
+LOCALES = ["", "es"]  # english + spanish locales
 
 FILENAMES = {
   "WINDOWS" => ["WINDOWS", WINDOWS],
